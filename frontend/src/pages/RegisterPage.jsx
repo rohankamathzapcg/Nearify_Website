@@ -113,7 +113,7 @@ const RegisterPage = () => {
               {/* Grid containing Lottie Animation Ends*/}
 
               {/* Grid containing Login page Starts*/}
-              <Grid size={{ xs: 12, sm: 12, lg: 7 }} sx={{
+              <Grid size={{ xs: 12, sm: 12, lg: 7}} sx={{
                 backgroundColor: "#bec2da",
                 padding: { xs: "10px", sm: "40px" },
               }}>
@@ -124,69 +124,50 @@ const RegisterPage = () => {
                   </Avatar>
                   <CustomTypography variant='h6' sx={{ fontSize: { xs: "18px", sm: "24px" } }}>Create your account</CustomTypography>
 
-                  {/* Form Starts Here */}
-                  <form style={{ width: '100%' }}>
-                    <Grid
-                      container
-                      spacing={3}
-                      padding={{ xs: "30px 20px 0 20px", sm: "30px 5px 0 20px" }}
-                      sx={{ width: '100%' }} // Ensure the container is full width
-                    >
-                      {/* Full Name Field */}
-                      <Grid item xs={12} sm={6} lg={6}>
-                        <CustomTextField
-                          value={registerData.fullName}
-                          onChange={(e) => handleInputChange("fullName", e.target.value)}
-                          error={!!errors.fullName}
-                          helperText={errors.fullName}
-                          autoComplete="off"
-                          label="Enter your full name"
-                          autoFocus
-                          icon={<PermIdentityIcon />}
-                        />
-                      </Grid>
+                    <Stack  sx={{marginTop:"30px"}} direction={{ xs: "column", sm: "row" }} spacing={3}>
+                      <CustomTextField
+                        value={registerData.fullName}
+                        onChange={(e) => handleInputChange("fullName", e.target.value)}
+                        error={!!errors.fullName}
+                        helperText={errors.fullName}
+                        autoComplete="off"
+                        label="Enter your full name"
+                        autoFocus
+                        icon={<PermIdentityIcon />}
+                      />
 
-                      {/* Email Field */}
-                      <Grid item xs={12} sm={6} lg={6}>
-                        <CustomTextField
-                          value={registerData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)}
-                          error={!!errors.email}
-                          helperText={errors.email}
-                          autoComplete="off"
-                          label="Enter your email-id"
-                          icon={<AttachEmailOutlinedIcon />}
-                        />
-                      </Grid>
+                      <CustomTextField
+                        value={registerData.email}
+                        onChange={(e) => handleInputChange("email", e.target.value)}
+                        error={!!errors.email}
+                        helperText={errors.email}
+                        autoComplete="off"
+                        label="Enter your email-id"
+                        icon={<AttachEmailOutlinedIcon />}
+                      />
+                    </Stack>
 
-                      {/* Password Field */}
-                      <Grid item xs={12} sm={6} lg={6}>
-                        <CustomTextField
-                          value={registerData.password}
-                          onChange={(e) => handleInputChange("password", e.target.value)}
-                          error={!!errors.password}
-                          helperText={errors.password}
-                          type="password"
-                          label="Enter your password"
-                          icon={<EnhancedEncryptionOutlinedIcon />}
-                        />
-                      </Grid>
+                    <Stack sx={{marginTop:"30px"}} direction={{ xs: "column", sm: "row" }} spacing={3}>
+                      <CustomTextField
+                        value={registerData.password}
+                        onChange={(e) => handleInputChange("password", e.target.value)}
+                        error={!!errors.password}
+                        helperText={errors.password}
+                        type="password"
+                        label="Enter your password"
+                        icon={<EnhancedEncryptionOutlinedIcon />}
+                      />
 
-                      {/* Confirm Password Field */}
-                      <Grid item xs={12} sm={6} lg={6}>
-                        <CustomTextField
-                          value={registerData.cpassword}
-                          onChange={(e) => handleInputChange("cpassword", e.target.value)}
-                          error={!!errors.cpassword}
-                          helperText={errors.cpassword}
-                          type="password"
-                          label="Confirm your password"
-                          icon={<EnhancedEncryptionOutlinedIcon />}
-                        />
-                      </Grid>
-                    </Grid>
-                  </form>
-
+                      <CustomTextField
+                        value={registerData.cpassword}
+                        onChange={(e) => handleInputChange("cpassword", e.target.value)}
+                        error={!!errors.cpassword}
+                        helperText={errors.cpassword}
+                        type="password"
+                        label="Confirm your password"
+                        icon={<EnhancedEncryptionOutlinedIcon />}
+                      />
+                    </Stack>
 
                   <Button
                     onClick={handleSubmit}
@@ -194,7 +175,10 @@ const RegisterPage = () => {
                     variant="contained"
                     size="normal"
                     sx={{
-                      width: "90%",
+                      width:{
+                        xs:"75%",
+                        sm:"80%",
+                      },
                       mt: '20px',
                       borderRadius: 28,
                       color: '#ffffff',
@@ -206,19 +190,12 @@ const RegisterPage = () => {
                     </CustomTypography>
                   </Button>
                   {/* Form Ends Here */}
-
                   <CustomTypography sx={{ fontSize: "12px", marginBottom: "10px" }}>Already have an account? <span className='flip-label' onClick={handleLoginPage}>SignIn Now</span></CustomTypography>
-
                 </Stack>
-
               </Grid>
-
             </Grid>
-
           </Box>
-
         </StyledBox>
-
       </Box>
     </>
   );

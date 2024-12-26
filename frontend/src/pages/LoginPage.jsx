@@ -26,6 +26,36 @@ const StyledBox = styled(Box)(({ theme }) => ({
 const LoginPage = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const navigate = useNavigate();
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: ""
+  })
+  const [errors, setErrors] = useState({})
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!loginData.email.trim()) {
+      newErrors.email = "* Email is required";
+    }
+    if (!loginData.password.trim()) {
+      newErrors.password = "* Password is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (field, value) => {
+    setLoginData({ ...loginData, [field]: value });
+    setErrors({ ...errors, [field]: "" });
+  };
+
+  const handleLoginBtn = () => {
+    if (validateForm()) {
+      console.log("Validated: ", loginData)
+    }
+  }
 
   const handleCreateAccount = () => {
     setIsAnimating(true);
@@ -76,28 +106,44 @@ const LoginPage = () => {
                   <CustomTypography variant='h6' sx={{ fontSize: { xs: "18px", sm: "24px" } }}>SignIn / LogIn</CustomTypography>
 
                   <Stack width="100%" padding={{ xs: "20px 20px 0 20px", sm: "20px 60px 0 60px" }}>
+                    <CustomTextField autoComplete="off"
+                      label={"Enter your email-id"}
+                      value={loginData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      error={!!errors.email}
+                      helperText={errors.email}
+                      sx={{ marginTop: "10px" }}
+                      autoFocus
+                      icon={<AttachEmailOutlinedIcon />} />
 
-                    <CustomTextField autoComplete="off" label={"Enter your email-id"} sx={{ marginTop: "20px" }} autoFocus icon={<AttachEmailOutlinedIcon />} />
-                    <CustomTextField type="password" label={"Enter your password"} sx={{ marginTop: "20px" }} icon={<EnhancedEncryptionOutlinedIcon />} />
-                    <CustomTypography variant='h6' sx={{ fontSize: { xs: "9px", sm: "12px" }, textAlign: "right" }}>Forgot password?</CustomTypography>
+                    <CustomTextField
+                      type="password"
+                      value={loginData.password}
+                      onChange={(e) => handleInputChange("password", e.target.value)}
+                      error={!!errors.password}
+                      helperText={errors.password}
+                      label={"Enter your password"}
+                      sx={{ marginTop: "20px" }}
+                      icon={<EnhancedEncryptionOutlinedIcon />} />
+
+                    <CustomTypography
+                      variant='h6'
+                      sx={{ fontSize: { xs: "9px", sm: "12px" }, textAlign: "right" }}
+                    >
+                      Forgot password?
+                    </CustomTypography>
+
                     <Button type="submit" variant='contained' size='normal' sx={{ mt: "10px", borderRadius: 28, color: "#ffffff", minWidth: "170px", backgroundColor: "#FF9A01" }}>
-                      <CustomTypography variant='p' sx={{ marginTop: "0px" }}>Sign In</CustomTypography>
+                      <CustomTypography variant='p' sx={{ marginTop: "0px" }} onClick={handleLoginBtn}>Sign In</CustomTypography>
                     </Button>
-
                   </Stack>
 
                   <CustomTypography sx={{ fontSize: "12px", marginBottom: "10px" }}>Not registered yet? <span className='flip-label' onClick={handleCreateAccount}>Create an account</span></CustomTypography>
-
                 </Stack>
-
               </Grid>
-
             </Grid>
-
           </Box>
-
         </StyledBox>
-
       </Box>
     </>
   );
