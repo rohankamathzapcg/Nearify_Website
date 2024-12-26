@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Box, Button, Stack, styled } from '@mui/material';
+import { Avatar, Box, Button, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import bgImg from '../assets/bg-image.jpg';
 import animationData from '../assets/Register.json';
@@ -11,18 +11,8 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AttachEmailOutlinedIcon from '@mui/icons-material/AttachEmailOutlined';
 import EnhancedEncryptionOutlinedIcon from '@mui/icons-material/EnhancedEncryptionOutlined';
 import { useNavigate } from 'react-router-dom';
-
-const StyledBox = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%,-50%)",
-  width: "79%",
-  height: "auto",
-  backgroundColor: "white",
-  boxShadow: 24,
-  borderRadius: theme.shape.borderRadius,
-}));
+import CustomStyledBox from '../components/customComponents/CustomStyledBox';
+import CustomButton from '../components/customFormControls/CustomButton';
 
 const RegisterPage = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -96,7 +86,7 @@ const RegisterPage = () => {
         }}
       >
         {/* Login Container Box with Image */}
-        <StyledBox className={isAnimating ? 'flip-close-animation' : ''}>
+        <CustomStyledBox className={isAnimating ? 'flip-close-animation' : ''}>
 
           <Box sx={{ flexGrow: 1 }}>
 
@@ -110,92 +100,83 @@ const RegisterPage = () => {
                   style={{ width: "100%", maxWidth: "400px", height: "auto", marginTop: "10px" }}
                 />
               </Grid>
-              {/* Grid containing Lottie Animation Ends*/}
 
-              {/* Grid containing Login page Starts*/}
-              <Grid size={{ xs: 12, sm: 12, lg: 7}} sx={{
+              {/* Grid containing Register page Starts*/}
+              <Grid size={{ xs: 12, sm: 12, lg: 7 }} sx={{
                 backgroundColor: "#bec2da",
                 padding: { xs: "10px", sm: "40px" },
               }}>
                 <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-                  <Avatar sx={{ bgcolor: "white", color: "#bec2da", marginTop: { xs: "5px", sm: "10px" } }} >
+                  <Avatar sx={{ bgcolor: "white", color: "black", marginTop: { xs: "5px", sm: "10px" } }} >
                     <LockOpenIcon />
                   </Avatar>
-                  <CustomTypography variant='h6' sx={{ fontSize: { xs: "18px", sm: "24px" } }}>Create your account</CustomTypography>
+                  <CustomTypography sx={{ fontSize: { xs: "18px", sm: "24px" } }}>Create your account</CustomTypography>
 
-                    <Stack  sx={{marginTop:"30px"}} direction={{ xs: "column", sm: "row" }} spacing={3}>
-                      <CustomTextField
-                        value={registerData.fullName}
-                        onChange={(e) => handleInputChange("fullName", e.target.value)}
-                        error={!!errors.fullName}
-                        helperText={errors.fullName}
-                        autoComplete="off"
-                        label="Enter your full name"
-                        autoFocus
-                        icon={<PermIdentityIcon />}
-                      />
+                  <Stack sx={{ marginTop: "30px" }} direction={{ xs: "column", sm: "row" }} spacing={3}>
+                    <CustomTextField
+                      value={registerData.fullName}
+                      onChange={(e) => handleInputChange("fullName", e.target.value)}
+                      error={!!errors.fullName}
+                      helperText={errors.fullName}
+                      autoComplete="off"
+                      label="Enter your full name"
+                      autoFocus
+                      icon={<PermIdentityIcon />}
+                    />
 
-                      <CustomTextField
-                        value={registerData.email}
-                        onChange={(e) => handleInputChange("email", e.target.value)}
-                        error={!!errors.email}
-                        helperText={errors.email}
-                        autoComplete="off"
-                        label="Enter your email-id"
-                        icon={<AttachEmailOutlinedIcon />}
-                      />
-                    </Stack>
+                    <CustomTextField
+                      value={registerData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      error={!!errors.email}
+                      helperText={errors.email}
+                      autoComplete="off"
+                      label="Enter your email-id"
+                      icon={<AttachEmailOutlinedIcon />}
+                    />
+                  </Stack>
 
-                    <Stack sx={{marginTop:"30px"}} direction={{ xs: "column", sm: "row" }} spacing={3}>
-                      <CustomTextField
-                        value={registerData.password}
-                        onChange={(e) => handleInputChange("password", e.target.value)}
-                        error={!!errors.password}
-                        helperText={errors.password}
-                        type="password"
-                        label="Enter your password"
-                        icon={<EnhancedEncryptionOutlinedIcon />}
-                      />
+                  <Stack sx={{ marginTop: "30px" }} direction={{ xs: "column", sm: "row" }} spacing={3}>
+                    <CustomTextField
+                      value={registerData.password}
+                      onChange={(e) => handleInputChange("password", e.target.value)}
+                      error={!!errors.password}
+                      helperText={errors.password}
+                      type="password"
+                      label="Enter your password"
+                      icon={<EnhancedEncryptionOutlinedIcon />}
+                    />
 
-                      <CustomTextField
-                        value={registerData.cpassword}
-                        onChange={(e) => handleInputChange("cpassword", e.target.value)}
-                        error={!!errors.cpassword}
-                        helperText={errors.cpassword}
-                        type="password"
-                        label="Confirm your password"
-                        icon={<EnhancedEncryptionOutlinedIcon />}
-                      />
-                    </Stack>
+                    <CustomTextField
+                      value={registerData.cpassword}
+                      onChange={(e) => handleInputChange("cpassword", e.target.value)}
+                      error={!!errors.cpassword}
+                      helperText={errors.cpassword}
+                      type="password"
+                      label="Confirm your password"
+                      icon={<EnhancedEncryptionOutlinedIcon />}
+                    />
+                  </Stack>
 
-                  <Button
+                  <CustomButton
                     onClick={handleSubmit}
-                    type="submit"
-                    variant="contained"
-                    size="normal"
                     sx={{
-                      width:{
-                        xs:"75%",
-                        sm:"80%",
-                      },
-                      mt: '20px',
-                      borderRadius: 28,
-                      color: '#ffffff',
-                      backgroundColor: '#FF9A01',
+                      mt: "30px",
+                      width: {
+                        xs: "75%",
+                        sm: "80%",
+                      }
                     }}
                   >
-                    <CustomTypography variant="p" sx={{ marginTop: '0px' }}>
-                      Register
-                    </CustomTypography>
-                  </Button>
-                  {/* Form Ends Here */}
+                    Register
+                  </CustomButton>
+
                   <CustomTypography sx={{ fontSize: "12px", marginBottom: "10px" }}>Already have an account? <span className='flip-label' onClick={handleLoginPage}>SignIn Now</span></CustomTypography>
                 </Stack>
               </Grid>
             </Grid>
           </Box>
-        </StyledBox>
+        </CustomStyledBox>
       </Box>
     </>
   );
