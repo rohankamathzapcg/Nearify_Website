@@ -3,10 +3,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ForgotPassword from "./pages/ForgotPassword";
+import { CssBaseline } from "@mui/material";
 
 const App = () => {
   return (
     <>
+      <CssBaseline />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />} />
