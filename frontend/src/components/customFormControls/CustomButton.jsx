@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  borderRadius: 28,
+  borderRadius: 8,
   color: "black",
   minWidth: "170px",
   backgroundColor: "#FF9A01",

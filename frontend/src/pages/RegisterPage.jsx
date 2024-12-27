@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Box, Button, Stack } from '@mui/material';
+import { Avatar, Box, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import bgImg from '../assets/bg-image.jpg';
 import animationData from '../assets/Register.json';

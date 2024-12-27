@@ -1,8 +1,7 @@
 import React from 'react';
 import { TextField, InputAdornment } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 
-const CustomTextField = ({ label, endIcon, isPassword = false, error = false, helperText = '', icon = <AccountCircle />, ...props }) => {
+const CustomTextField = ({ label, endIcon, isPassword = false, error = false, helperText = '', icon = '', ...props }) => {
 
   return (
     <TextField

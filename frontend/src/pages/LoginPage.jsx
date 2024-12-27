@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Box, Button, Stack } from '@mui/material';
+import { Avatar, Box, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import bgImg from '../assets/bg-image.jpg';
 import animationData from '../assets/Login.json';
@@ -115,13 +115,25 @@ const LoginPage = () => {
                       sx={{ marginTop: "20px" }}
                       icon={<EnhancedEncryptionOutlinedIcon />} />
 
-                    <CustomTypography
-                      variant='h6'
-                      sx={{ fontSize: { xs: "9px", sm: "12px" }, textAlign: "right",cursor:"pointer" }}
-                      onClick={() => { navigate('/forgotpassword') }}
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        width: "100%",
+                      }}
                     >
-                      Forgot password?
-                    </CustomTypography>
+                      <CustomTypography
+                        className="flip-label"
+                        sx={{
+                          fontSize: { xs: "9px", sm: "11px" }, color: "blue"
+                        }}
+                        onClick={() => {
+                          navigate('/forgotpassword');
+                        }}
+                      >
+                        Forgot password?
+                      </CustomTypography>
+                    </div>
 
                     <CustomButton onClick={handleLoginBtn} sx={{ mt: "10px" }}>
                       Sign In
