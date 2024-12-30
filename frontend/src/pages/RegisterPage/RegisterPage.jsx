@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Avatar, Box, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import bgImg from '../assets/bg-image.jpg';
-import animationData from '../assets/Register.json';
+import bgImg from '../../assets/bg-image.jpg';
+import animationData from '../../assets/Register.json';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Lottie from 'lottie-react';
-import CustomTypography from '../components/customFormControls/CustomTypography';
-import CustomTextField from '../components/customFormControls/CustomTextField';
+import CustomTypography from '../../components/customFormControls/CustomTypography';
+import CustomTextField from '../../components/customFormControls/CustomTextField';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AttachEmailOutlinedIcon from '@mui/icons-material/AttachEmailOutlined';
 import EnhancedEncryptionOutlinedIcon from '@mui/icons-material/EnhancedEncryptionOutlined';
 import { useNavigate } from 'react-router-dom';
-import CustomStyledBox from '../components/customComponents/CustomStyledBox';
-import CustomButton from '../components/customFormControls/CustomButton';
+import CustomStyledBox from '../../components/customComponents/CustomStyledBox';
+import CustomButton from '../../components/customFormControls/CustomButton';
 
 const RegisterPage = () => {
   const [isAnimating, setIsAnimating] = useState(false);

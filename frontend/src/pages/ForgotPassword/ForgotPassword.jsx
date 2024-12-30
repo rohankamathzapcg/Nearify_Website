@@ -1,17 +1,17 @@
 import { Avatar, Box, Stack } from '@mui/material';
 import React, { useState } from 'react';
-import bgImg from '../assets/bg-image.jpg';
-import CustomStyledBox from '../components/customComponents/CustomStyledBox';
-import CustomTextField from '../components/customFormControls/CustomTextField';
+import bgImg from '../../assets/bg-image.jpg';
+import CustomStyledBox from '../../components/customComponents/CustomStyledBox';
+import CustomTextField from '../../components/customFormControls/CustomTextField';
 import Grid from '@mui/material/Grid2';
 import Lottie from 'lottie-react';
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
 import AttachEmailOutlinedIcon from '@mui/icons-material/AttachEmailOutlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import EnhancedEncryptionOutlinedIcon from '@mui/icons-material/EnhancedEncryptionOutlined';
-import animationData from '../assets/ForgotPassword.json'
-import CustomTypography from '../components/customFormControls/CustomTypography';
-import CustomButton from '../components/customFormControls/CustomButton';
+import animationData from '../../assets/ForgotPassword.json'
+import CustomTypography from '../../components/customFormControls/CustomTypography';
+import CustomButton from '../../components/customFormControls/CustomButton';
 import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = () => {
@@ -127,7 +127,7 @@ const ForgotPassword = () => {
                   </Stack>
 
                   {otpSent && !isOtpValid && (
-                    <Stack width="100%" padding={{ xs: "10px 0 0 20px", sm: "10px 0 0 60px" }}>
+                    <Stack  width="100%" padding={{ xs: "10px 0 20px 20px", sm: "10px 0 20px 60px" }}>
                       <CustomTypography sx={{ fontSize: { xs: "7px", sm: "10px" } }}>
                         Enter the OTP sent to your email
                       </CustomTypography>
@@ -156,10 +156,11 @@ const ForgotPassword = () => {
                   )}
 
                   {isOtpValid && (
-                    <Stack width="100%" spacing={2} padding={{ xs: "20px 20px 0 20px", sm: "20px 60px 0 60px" }}>
+                    <Stack width="100%" spacing={2} padding={{ xs: "20px 20px 20px 20px", sm: "20px 60px 20px 60px" }}>
                       <CustomTextField
                         icon={<EnhancedEncryptionOutlinedIcon />}
                         label={'New Password'}
+                        autoFocus
                         type="password"
                       />
                       <CustomTextField
