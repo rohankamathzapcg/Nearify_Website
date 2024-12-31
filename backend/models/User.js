@@ -4,17 +4,17 @@ const sequelize = require("../config/connection");
 const UserSchema = sequelize.define(
   "Users",
   {
-    fullName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      primaryKey: true,
       validate: {
         isEmail: true,
       },
+    },
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     password: {
       type: DataTypes.STRING,

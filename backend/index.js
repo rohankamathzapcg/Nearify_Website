@@ -1,24 +1,23 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const pinRoute = require("./routes/Pin");
+
+const sequelize = require("./config/connection");
+const pinRoute=require("./routes/PinRoutes")
+
 const port = 8800;
 
 const app = express();
-
-dotenv.config();
-
 app.use(express.json());
 
 /* Database connection Starts */
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => {
-    console.log("Database Connected!!");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+async function DatabaseConnection() {
+  try {
+    await sequelize.sync({ alter: true });
+    console.log("Databases synchronized and Connected successully!");
+  } catch (err) {
+    console.error("Error synchronizing the database:", err);
+  }
+}
+DatabaseConnection();
 /* Database connection Ends */
 
 app.use("/api/pins", pinRoute);

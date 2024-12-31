@@ -1,12 +1,22 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
+const User = require("./User");
 
 const PinSchema = sequelize.define(
   "Pin",
   {
+    id:{
+      type:DataTypes.INTEGER,
+      autoIncrement:true,
+      primaryKey:true
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: User,
+        key: "email",
+      },
     },
     title: {
       type: DataTypes.STRING,
@@ -23,7 +33,7 @@ const PinSchema = sequelize.define(
       },
     },
     rating: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         min: 0,
@@ -31,15 +41,19 @@ const PinSchema = sequelize.define(
       },
     },
     lat: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     long: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
   { timestamps: true }
 );
+
+/* Defiing Associations */
+User.hasMany(PinSchema, { foreignKey: "email", onDelete: "CASCADE" });
+PinSchema.belongsTo(User, { foreignKey: "email" });
 
 module.exports = PinSchema;
