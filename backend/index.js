@@ -1,12 +1,13 @@
 const express = require("express");
-
+const cookieParser = require("cookie-parser");
 const sequelize = require("./config/connection");
-const pinRoute=require("./routes/PinRoutes")
-
+const pinRoute = require("./routes/PinRoutes");
+const userRoute = require("./routes/UserRoutes");
 const port = 8800;
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 /* Database connection Starts */
 async function DatabaseConnection() {
@@ -21,6 +22,7 @@ DatabaseConnection();
 /* Database connection Ends */
 
 app.use("/api/pins", pinRoute);
+app.use("/api/user", userRoute);
 
 /* Server connecting to port */
 app.listen(port, () => {
