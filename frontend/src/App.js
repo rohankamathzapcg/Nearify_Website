@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import Main from "./pages/Main/Main";
 import { CssBaseline } from "@mui/material";
 
 const App = () => {
@@ -11,7 +12,8 @@ const App = () => {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>

@@ -74,7 +74,7 @@ const RegisterPage = () => {
       try {
         const res = await registerUser(data)
         setSnackbar({ open: true, msg: res.message, severity: 'success' });
-        setTimeout(() => navigate('/'), 1500);
+        setTimeout(() => navigate('/login'), 1500);
       } catch (err) {
         setSnackbar({ open: true, msg: err, severity: 'error' });
       }
@@ -84,7 +84,7 @@ const RegisterPage = () => {
   const handleLoginPage = () => {
     setIsAnimating(true);
     setTimeout(() => {
-      navigate('/')
+      navigate('/login')
     }, 1000)
   }
 

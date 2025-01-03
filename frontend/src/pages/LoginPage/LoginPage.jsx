@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomStyledBox from '../../components/customComponents/CustomStyledBox';
 import CustomButton from '../../components/customFormControls/CustomButton';
 import { loginUser } from '../../services/authService';
+import CustomSnackbar from '../../components/customComponents/CustomSnackbar';
 
 const LoginPage = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -22,6 +23,7 @@ const LoginPage = () => {
     password: ""
   })
   const [errors, setErrors] = useState({})
+  const [snackbar, setSnackbar] = useState({ open: false, msg: '', severity: 'success' });
 
   const validateForm = () => {
     const newErrors = {};
@@ -45,7 +47,7 @@ const LoginPage = () => {
   const handleLoginBtn = async (e) => {
     if (validateForm()) {
       const res = await loginUser(loginData);
-
+      setSnackbar({ open: true, msg: res.message, severity: 'success' });
     }
   }
 
@@ -149,6 +151,7 @@ const LoginPage = () => {
           </Box>
         </CustomStyledBox>
       </Box>
+      <CustomSnackbar />
     </>
   );
 };
