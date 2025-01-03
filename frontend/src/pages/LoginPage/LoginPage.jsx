@@ -12,6 +12,7 @@ import EnhancedEncryptionOutlinedIcon from '@mui/icons-material/EnhancedEncrypti
 import { useNavigate } from 'react-router-dom';
 import CustomStyledBox from '../../components/customComponents/CustomStyledBox';
 import CustomButton from '../../components/customFormControls/CustomButton';
+import { loginUser } from '../../services/authService';
 
 const LoginPage = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -41,9 +42,10 @@ const LoginPage = () => {
     setErrors({ ...errors, [field]: "" });
   };
 
-  const handleLoginBtn = () => {
+  const handleLoginBtn = async (e) => {
     if (validateForm()) {
-      console.log("Validated: ", loginData)
+      const res = await loginUser(loginData);
+
     }
   }
 

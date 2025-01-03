@@ -4,7 +4,10 @@ const userDao = require("../dao/userDao");
 const registerUser = async (req, res) => {
   try {
     const newUser = await userDao.signUp(req.body);
-    res.status(200).json(newUser);
+    res.status(200).json({
+      sucess:true,
+      message:'Registered Sucessfully!'
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -22,7 +25,7 @@ const loginUser = async (req, res) => {
     };
     res.status(200).cookie("token", user, options).json({
       success: true,
-      message: 'Logged in successfully',
+      message: 'Logged in successfully!',
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
