@@ -13,6 +13,8 @@ import EnhancedEncryptionOutlinedIcon from '@mui/icons-material/EnhancedEncrypti
 import { useNavigate } from 'react-router-dom';
 import CustomStyledBox from '../../components/customComponents/CustomStyledBox';
 import CustomButton from '../../components/customFormControls/CustomButton';
+import { registerUser } from '../../services/authService';
+import CustomSnackbar from '../../components/customComponents/CustomSnackbar';
 
 const RegisterPage = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -24,6 +26,7 @@ const RegisterPage = () => {
     cpassword: ''
   })
   const [errors, setErrors] = useState({})
+  const [snackbar, setSnackbar] = useState({ open: false, msg: '', severity: 'success' });
 
   const validateForm = () => {
     const newErrors = {};
@@ -59,10 +62,22 @@ const RegisterPage = () => {
     setErrors({ ...errors, [field]: "" });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Register Data: ", registerData)
+      const data = {
+        email: registerData.email,
+        fullName: registerData.fullName,
+        password: registerData.password
+      }
+      // POST-API Called on Button Click
+      try {
+        await registerUser(data)
+        setSnackbar({ open: true, msg: 'Registration successful!', severity: 'success' });
+        setTimeout(() => navigate('/'), 1500);
+      } catch (err) {
+        setSnackbar({ open: true, msg: err, severity: 'error' });
+      }
     }
   }
 
@@ -72,6 +87,10 @@ const RegisterPage = () => {
       navigate('/')
     }, 1000)
   }
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false });
+  };
 
   return (
     <>
@@ -178,6 +197,14 @@ const RegisterPage = () => {
           </Box>
         </CustomStyledBox>
       </Box>
+
+      {/* Custom Snackbar to display messages */}
+      <CustomSnackbar
+        open={snackbar.open}
+        onClose={handleCloseSnackbar}
+        severity={snackbar.severity}
+        msg={snackbar.msg}
+      />
     </>
   );
 }
