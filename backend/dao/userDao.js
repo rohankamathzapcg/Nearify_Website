@@ -29,7 +29,6 @@ const signUp = async (data) => {
 /* Login user to the Homepage */
 const logIn = async (data) => {
   try {
-    console.log(data.email);
     const existingUser = await User.findOne({ where: { email: data.email } });
 
     if (!existingUser) {
@@ -38,6 +37,8 @@ const logIn = async (data) => {
 
     const isMatch = await bcrypt.compare(data.password, existingUser.password);
     if (isMatch) {
+
+      // Generating Token
       const token = jwt.sign(
         { email: existingUser.email, fullName: existingUser.fullName },
         process.env.JWT_SECRET,

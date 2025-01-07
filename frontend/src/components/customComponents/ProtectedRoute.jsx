@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { verifyToken } from "../../services/authService";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ProtectedRoute = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const checkToken = async () => {
@@ -29,7 +30,13 @@ const ProtectedRoute = ({ children }) => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+        <ClipLoader color="#4A90E2" loading={loading} size={50} />
+      </div>
+      </>
+    );
   }
 
   if (!isAuthenticated) {

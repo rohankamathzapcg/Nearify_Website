@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, Box, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import bgImg from '../../assets/bg-image.jpg';
@@ -14,6 +14,7 @@ import CustomStyledBox from '../../components/customComponents/CustomStyledBox';
 import CustomButton from '../../components/customFormControls/CustomButton';
 import { loginUser } from '../../services/authService';
 import CustomSnackbar from '../../components/customComponents/CustomSnackbar';
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -50,6 +51,17 @@ const LoginPage = () => {
       try {
         const res = await loginUser(loginData);
         setSnackbar({ open: true, msg: res.message, severity: 'success' });
+
+        // Push the current state to prevent going back
+        window.history.replaceState(null, null, "/"); // Redirect to the homepage
+        window.history.pushState(null, null, "/"); // Add a new history state
+        window.addEventListener("popstate", (event) => {
+          if (Cookies.get("token")) {
+            // Redirect back to the homepage if the token exists
+            window.history.pushState(null, null, "/");
+          }
+        });
+
         setTimeout(() => navigate('/'), 1500);
       } catch (err) {
         setSnackbar({ open: true, msg: err, severity: 'error' });
