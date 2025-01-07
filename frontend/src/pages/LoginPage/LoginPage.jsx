@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Avatar, Box, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import bgImg from '../../assets/bg-image.jpg';
