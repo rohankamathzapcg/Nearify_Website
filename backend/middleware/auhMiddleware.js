@@ -15,7 +15,7 @@ const authenticate = (req, res, next) => {
     req.user = decoded; // Attach decoded data to request
     next();
   } catch (err) {
-    return res.status(401).json({ error: 'Invalid Token' });
+    return res.status(401).json({ error: 'Invalid / Expired Token' });
   }
 };
 

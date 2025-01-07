@@ -26,10 +26,12 @@ const signUp = async (data) => {
   }
 };
 
-/* Login user to te Homepage */
+/* Login user to the Homepage */
 const logIn = async (data) => {
   try {
+    console.log(data.email);
     const existingUser = await User.findOne({ where: { email: data.email } });
+
     if (!existingUser) {
       throw new Error("User not found!");
     }
@@ -40,7 +42,7 @@ const logIn = async (data) => {
         { email: existingUser.email, fullName: existingUser.fullName },
         process.env.JWT_SECRET,
         {
-          expiresIn: "2h",
+          expiresIn: "1d",
         }
       );
       return token;
@@ -52,4 +54,14 @@ const logIn = async (data) => {
   }
 };
 
-module.exports = { signUp, logIn };
+// Verify users token
+const tokenVerification = async (token) => {
+  try {
+    jwt.verify(token, process.env.JWT_SECRET);
+    return true;
+  } catch (error) {
+    throw new Error(err.message);
+  }
+};
+
+module.exports = { signUp, logIn, tokenVerification };

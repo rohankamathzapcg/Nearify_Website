@@ -46,8 +46,14 @@ const LoginPage = () => {
 
   const handleLoginBtn = async (e) => {
     if (validateForm()) {
-      const res = await loginUser(loginData);
-      setSnackbar({ open: true, msg: res.message, severity: 'success' });
+      // GET-API Called on Button Click
+      try {
+        const res = await loginUser(loginData);
+        setSnackbar({ open: true, msg: res.message, severity: 'success' });
+        setTimeout(() => navigate('/'), 1500);
+      } catch (err) {
+        setSnackbar({ open: true, msg: err, severity: 'error' });
+      }
     }
   }
 
@@ -57,6 +63,10 @@ const LoginPage = () => {
       navigate('/register')
     }, 1000)
   }
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false });
+  };
 
   return (
     <>
@@ -151,7 +161,13 @@ const LoginPage = () => {
           </Box>
         </CustomStyledBox>
       </Box>
-      <CustomSnackbar />
+      {/* Custom Snackbar to display messages */}
+      <CustomSnackbar
+        open={snackbar.open}
+        onClose={handleCloseSnackbar}
+        severity={snackbar.severity}
+        msg={snackbar.msg}
+      />
     </>
   );
 };
