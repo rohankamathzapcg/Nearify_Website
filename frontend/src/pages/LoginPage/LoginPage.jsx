@@ -100,6 +100,7 @@ const LoginPage = () => {
               {/* Grid containing Lottie Animation Starts*/}
               <Grid size={{ xs: 12, sm: 12, lg: 5 }} sx={{ display: { xs: "none", lg: "flex" }, justifyContent: "center", alignItems: "center" }}>
                 <Lottie
+                  data-testid="lottie-animation"
                   animationData={animationData}
                   loop
                   autoplay
@@ -115,7 +116,7 @@ const LoginPage = () => {
               }}>
                 <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-                  <Avatar sx={{ bgcolor: "white", color: "black", marginTop: { xs: "5px", sm: "10px" } }} >
+                  <Avatar data-testid="avatar" sx={{ bgcolor: "white", color: "black", marginTop: { xs: "5px", sm: "10px" } }} >
                     <LockOutlinedIcon />
                   </Avatar>
                   <CustomTypography sx={{ fontSize: { xs: "18px", sm: "24px" } }}>SignIn / LogIn</CustomTypography>
